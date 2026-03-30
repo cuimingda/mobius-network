@@ -38,9 +38,10 @@ The repository includes [`.github/workflows/deploy.yml`](.github/workflows/deplo
 
 Current Pages target:
 
-- Site URL: `https://cuimingda.github.io`
+- Local development URL: `http://localhost:4321/`
+- Production site URL: `https://mingda.dev`
 - Base path: `/mobius-network`
-- Final GitHub Pages URL: `https://cuimingda.github.io/mobius-network/`
+- Final public URL: `https://mingda.dev/mobius-network/`
 
 One-time GitHub setup:
 
@@ -48,11 +49,4 @@ One-time GitHub setup:
 2. Open `Pages`.
 3. Set `Source` to `GitHub Actions`.
 
-## Custom Domain Later
-
-When you switch from the repository URL to a custom domain:
-
-1. Update `site` in `astro.config.mjs` to the final domain, for example `https://example.com`.
-2. Remove the `base` setting from `astro.config.mjs`.
-3. Add `public/CNAME` with the custom domain on a single line.
-4. Configure DNS at your domain provider to point to GitHub Pages.
+The Astro config uses `/` during `npm run dev`, and uses `/mobius-network` for production builds so local development stays on the root path while GitHub Pages output stays under the repository path.
