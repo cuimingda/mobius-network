@@ -1,11 +1,305 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const companyDetails = [
+	['公司中文名称', '杭州墨笔悟斯网络科技有限公司'],
+	['公司英文名称', 'Hangzhou Mobius Network Technology Co., Ltd.'],
+	['统一社会信用代码', '91330110MA8GHBT389'],
+	['公司类型', '有限责任公司（自然人独资）'],
+	['法定代表人', '崔明达'],
+	['注册资本', '壹万元整'],
+	['成立日期', '2024 年 11 月 06 日'],
+	['注册地址', '浙江省杭州市余杭区仓前街道良睦路 1399 号 21 幢 207-A0988（自主申报）'],
+];
+
+const businessScope = [
+	'技术服务、技术开发、技术咨询、技术交流、技术转让、技术推广',
+	'软件开发',
+	'人工智能应用软件开发',
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="杭州墨笔悟斯网络科技有限公司 | Hangzhou Mobius Network Technology Co., Ltd."
+	description="杭州墨笔悟斯网络科技有限公司的基础工商信息、经营范围与注册地址。"
+>
+	<main class="page">
+		<section class="hero panel">
+			<p class="eyebrow">Mobius Network</p>
+			<h1>杭州墨笔悟斯网络科技有限公司</h1>
+			<p class="subtitle">Hangzhou Mobius Network Technology Co., Ltd.</p>
+			<p class="summary">
+				公司位于浙江省杭州市，依法登记为有限责任公司（自然人独资），主要开展技术服务、软件开发与人工智能应用软件开发等业务。
+			</p>
+			<ul class="focus-list" aria-label="主营方向">
+				<li>技术服务</li>
+				<li>软件开发</li>
+				<li>人工智能应用软件开发</li>
+			</ul>
+		</section>
+
+		<div class="content-grid">
+			<section class="panel" aria-labelledby="company-basics-title">
+				<div class="section-heading">
+					<p class="section-kicker">Company Basics</p>
+					<h2 id="company-basics-title">基础登记信息</h2>
+				</div>
+				<dl class="details">
+					{
+						companyDetails.map(([label, value]) => (
+							<div class="detail-row">
+								<dt>{label}</dt>
+								<dd>{value}</dd>
+							</div>
+						))
+					}
+				</dl>
+			</section>
+
+			<section class="panel" aria-labelledby="business-scope-title">
+				<div class="section-heading">
+					<p class="section-kicker">Business Scope</p>
+					<h2 id="business-scope-title">经营范围</h2>
+				</div>
+				<p class="scope-intro">一般项目：</p>
+				<ul class="scope-list">
+					{businessScope.map((item) => <li>{item}</li>)}
+				</ul>
+				<p class="scope-note">
+					除依法须经批准的项目外，凭营业执照依法自主开展经营活动。
+				</p>
+			</section>
+		</div>
+	</main>
 </Layout>
+
+<style>
+	:global(*) {
+		box-sizing: border-box;
+	}
+
+	.page {
+		width: min(1120px, calc(100% - 32px));
+		margin: 0 auto;
+		padding: 48px 0 72px;
+	}
+
+	.panel {
+		position: relative;
+		overflow: hidden;
+		border: 1px solid rgba(19, 32, 51, 0.1);
+		border-radius: 28px;
+		background: rgba(255, 255, 255, 0.84);
+		box-shadow: 0 24px 60px rgba(15, 39, 66, 0.08);
+		backdrop-filter: blur(18px);
+		animation: rise 0.6s ease-out both;
+	}
+
+	.panel::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(130deg, rgba(255, 255, 255, 0.5), transparent 48%),
+			linear-gradient(180deg, transparent 0%, rgba(15, 39, 66, 0.02) 100%);
+		pointer-events: none;
+	}
+
+	.hero {
+		padding: 56px;
+		margin-bottom: 24px;
+	}
+
+	.eyebrow,
+	.section-kicker {
+		margin: 0 0 12px;
+		font-size: 0.8rem;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: #4f6b8a;
+	}
+
+	h1,
+	h2 {
+		font-family: 'Iowan Old Style', 'Palatino Linotype', 'Noto Serif SC', 'Source Han Serif SC',
+			serif;
+		color: #10213a;
+	}
+
+	h1 {
+		margin: 0;
+		font-size: clamp(2.6rem, 6vw, 4.6rem);
+		line-height: 1.06;
+		letter-spacing: -0.04em;
+		max-width: 11ch;
+	}
+
+	.subtitle {
+		margin: 16px 0 0;
+		font-size: clamp(1rem, 2vw, 1.25rem);
+		color: #31506f;
+	}
+
+	.summary,
+	.scope-intro,
+	.scope-note,
+	dt,
+	dd,
+	li {
+		font-family: 'Avenir Next', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+	}
+
+	.summary {
+		max-width: 60ch;
+		margin: 24px 0 0;
+		font-size: 1.02rem;
+		line-height: 1.85;
+		color: #334760;
+	}
+
+	.focus-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		list-style: none;
+		padding: 0;
+		margin: 28px 0 0;
+	}
+
+	.focus-list li {
+		padding: 10px 16px;
+		border-radius: 999px;
+		background: rgba(15, 39, 66, 0.06);
+		border: 1px solid rgba(15, 39, 66, 0.08);
+		color: #18314f;
+	}
+
+	.content-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+		gap: 24px;
+	}
+
+	.content-grid > .panel {
+		padding: 32px;
+	}
+
+	.section-heading {
+		margin-bottom: 20px;
+	}
+
+	.section-kicker {
+		margin-bottom: 8px;
+	}
+
+	h2 {
+		margin: 0;
+		font-size: 1.85rem;
+		letter-spacing: -0.03em;
+	}
+
+	.details {
+		margin: 0;
+	}
+
+	.detail-row {
+		display: grid;
+		grid-template-columns: minmax(120px, 176px) minmax(0, 1fr);
+		gap: 16px;
+		padding: 18px 0;
+		border-top: 1px solid rgba(19, 32, 51, 0.08);
+	}
+
+	.detail-row:first-child {
+		padding-top: 0;
+		border-top: none;
+	}
+
+	dt {
+		font-size: 0.96rem;
+		font-weight: 600;
+		color: #29415d;
+	}
+
+	dd {
+		margin: 0;
+		font-size: 0.98rem;
+		line-height: 1.8;
+		color: #172639;
+	}
+
+	.scope-intro,
+	.scope-note {
+		margin: 0;
+		line-height: 1.8;
+		color: #334760;
+	}
+
+	.scope-list {
+		margin: 16px 0;
+		padding-left: 1.2rem;
+		color: #172639;
+	}
+
+	.scope-list li {
+		margin-bottom: 14px;
+		line-height: 1.75;
+	}
+
+	.scope-list li:last-child {
+		margin-bottom: 0;
+	}
+
+	@keyframes rise {
+		from {
+			opacity: 0;
+			transform: translateY(18px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (max-width: 900px) {
+		.page {
+			padding-top: 24px;
+		}
+
+		.hero,
+		.content-grid > .panel {
+			padding: 28px;
+		}
+
+		.content-grid {
+			grid-template-columns: 1fr;
+		}
+
+		h1 {
+			max-width: none;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.page {
+			width: min(100% - 20px, 1120px);
+			padding-bottom: 28px;
+		}
+
+		.hero,
+		.content-grid > .panel {
+			padding: 22px;
+			border-radius: 22px;
+		}
+
+		.focus-list {
+			gap: 10px;
+		}
+
+		.detail-row {
+			grid-template-columns: 1fr;
+			gap: 6px;
+		}
+	}
+</style>

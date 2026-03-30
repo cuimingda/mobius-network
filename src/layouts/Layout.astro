@@ -1,12 +1,28 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+	lang?: string;
+}
+
+const {
+	title = '杭州墨笔悟斯网络科技有限公司 | Hangzhou Mobius Network Technology Co., Ltd.',
+	description = '杭州墨笔悟斯网络科技有限公司的基础工商信息、经营范围与注册地址。',
+	lang = 'zh-CN',
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#0f2742" />
+		<title>{title}</title>
 	</head>
 	<body>
 		<slot />
@@ -14,10 +30,22 @@
 </html>
 
 <style>
+	:root {
+		color-scheme: light;
+	}
+
 	html,
 	body {
 		margin: 0;
 		width: 100%;
-		height: 100%;
+		min-height: 100%;
+	}
+
+	body {
+		background:
+			radial-gradient(circle at top left, rgba(104, 168, 199, 0.18), transparent 34%),
+			radial-gradient(circle at top right, rgba(28, 68, 109, 0.16), transparent 28%),
+			linear-gradient(180deg, #f6f8fb 0%, #eef2f7 100%);
+		color: #132033;
 	}
 </style>
