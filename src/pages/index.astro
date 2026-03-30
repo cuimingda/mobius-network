@@ -17,11 +17,30 @@ const businessScope = [
 	'软件开发',
 	'人工智能应用软件开发',
 ];
+
+const deliveryCapabilities = [
+	{
+		title: 'Apple Developer',
+		description: '面向 Apple Developer 生态提供应用开发、测试、上线准备与持续迭代支持。',
+	},
+	{
+		title: '微信小程序',
+		description: '围绕微信场景开展小程序产品设计、功能开发、接口联调与版本维护。',
+	},
+	{
+		title: 'Web App',
+		description: '构建适用于官网、业务系统与在线服务的现代 Web 应用，兼顾性能与可访问性。',
+	},
+	{
+		title: '桌面应用',
+		description: '开发面向业务场景的桌面软件与效率工具，支持长期维护和功能扩展。',
+	},
+];
 ---
 
 <Layout
 	title="杭州墨笔悟斯网络科技有限公司 | Hangzhou Mobius Network Technology Co., Ltd."
-	description="杭州墨笔悟斯网络科技有限公司的基础工商信息、经营范围与注册地址。"
+	description="杭州墨笔悟斯网络科技有限公司的基础工商信息，以及 Apple Developer、微信小程序、Web App 与桌面应用开发能力。"
 >
 	<main class="page">
 		<section class="hero panel">
@@ -29,12 +48,14 @@ const businessScope = [
 			<h1>杭州墨笔悟斯网络科技有限公司</h1>
 			<p class="subtitle">Hangzhou Mobius Network Technology Co., Ltd.</p>
 			<p class="summary">
-				公司位于浙江省杭州市，依法登记为有限责任公司（自然人独资），主要开展技术服务、软件开发与人工智能应用软件开发等业务。
+				公司位于浙江省杭州市，依法登记为有限责任公司（自然人独资），围绕技术服务、软件开发与人工智能应用软件开发开展业务，当前交付形态覆盖 Apple
+				Developer 生态应用、微信小程序、Web App 与桌面应用。
 			</p>
 			<ul class="focus-list" aria-label="主营方向">
-				<li>技术服务</li>
-				<li>软件开发</li>
-				<li>人工智能应用软件开发</li>
+				<li>Apple Developer</li>
+				<li>微信小程序</li>
+				<li>Web App</li>
+				<li>桌面应用</li>
 			</ul>
 		</section>
 
@@ -70,6 +91,26 @@ const businessScope = [
 				</p>
 			</section>
 		</div>
+
+		<section class="panel capabilities-panel" aria-labelledby="capabilities-title">
+			<div class="section-heading">
+				<p class="section-kicker">Platform Delivery</p>
+				<h2 id="capabilities-title">业务方向与交付类型</h2>
+			</div>
+			<p class="capability-intro">
+				公司面向多终端软件产品提供研发支持，可根据项目需要覆盖产品实现、版本迭代与持续维护等常见交付场景。
+			</p>
+			<div class="capability-grid">
+				{
+					deliveryCapabilities.map(({ title, description }) => (
+						<article class="capability-card">
+							<h3>{title}</h3>
+							<p>{description}</p>
+						</article>
+					))
+				}
+			</div>
+		</section>
 
 		<footer class="site-footer">
 			<p>© 2026 杭州墨笔悟斯网络科技有限公司</p>
@@ -153,7 +194,6 @@ const businessScope = [
 	}
 
 	.summary {
-		max-width: 60ch;
 		margin: 24px 0 0;
 		font-size: 1.02rem;
 		line-height: 1.85;
@@ -187,6 +227,45 @@ const businessScope = [
 		margin-top: 28px;
 		padding: 0 4px;
 		text-align: center;
+	}
+
+	.capabilities-panel {
+		margin-top: 24px;
+		padding: 32px;
+	}
+
+	.capability-intro,
+	.capability-card p {
+		margin: 0;
+		font-family: 'Avenir Next', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+		line-height: 1.8;
+		color: #334760;
+	}
+
+	.capability-intro {
+		margin-bottom: 24px;
+	}
+
+	.capability-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 18px;
+	}
+
+	.capability-card {
+		padding: 22px;
+		border-radius: 22px;
+		border: 1px solid rgba(19, 32, 51, 0.08);
+		background: rgba(15, 39, 66, 0.03);
+	}
+
+	.capability-card h3 {
+		margin: 0 0 10px;
+		font-family: 'Iowan Old Style', 'Palatino Linotype', 'Noto Serif SC', 'Source Han Serif SC',
+			serif;
+		font-size: 1.32rem;
+		letter-spacing: -0.02em;
+		color: #10213a;
 	}
 
 	.site-footer p {
@@ -285,7 +364,8 @@ const businessScope = [
 		}
 
 		.hero,
-		.content-grid > .panel {
+		.content-grid > .panel,
+		.capabilities-panel {
 			padding: 28px;
 		}
 
@@ -293,6 +373,9 @@ const businessScope = [
 			grid-template-columns: 1fr;
 		}
 
+		.capability-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	@media (max-width: 640px) {
@@ -302,7 +385,8 @@ const businessScope = [
 		}
 
 		.hero,
-		.content-grid > .panel {
+		.content-grid > .panel,
+		.capabilities-panel {
 			padding: 22px;
 			border-radius: 22px;
 		}

@@ -31,6 +31,15 @@ test('homepage includes footer copyright text', () => {
 	assert.ok(html.includes('© 2026 杭州墨笔悟斯网络科技有限公司'));
 });
 
-test('homepage hero heading is not width constrained on desktop', () => {
+test('homepage hero heading and summary are not width constrained on desktop', () => {
 	assert.ok(!html.includes('max-width:11ch'));
+	assert.ok(!html.includes('max-width:60ch'));
+});
+
+test('homepage highlights supported delivery formats', () => {
+	const deliveryFormats = ['Apple Developer', '微信小程序', 'Web App', '桌面应用'];
+
+	for (const text of deliveryFormats) {
+		assert.ok(html.includes(text), `expected built homepage to include "${text}"`);
+	}
 });
