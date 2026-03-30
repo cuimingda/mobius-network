@@ -30,3 +30,7 @@ test('homepage includes key company registration details', () => {
 test('homepage includes footer copyright text', () => {
 	assert.ok(html.includes('© 2026 杭州墨笔悟斯网络科技有限公司'));
 });
+
+test('homepage hero heading is not width constrained on desktop', () => {
+	assert.ok(!html.includes('max-width:11ch'));
+});
