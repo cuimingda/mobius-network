@@ -1,46 +1,58 @@
-# Astro Starter Kit: Basics
+# mobius-network
 
-```sh
-npm create astro@latest -- --template basics
-```
+Static company website built with Astro and deployed to GitHub Pages via GitHub Actions.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Requirements
 
-## 🚀 Project Structure
+- Node.js `>=22.12.0`
+- npm
 
-Inside of your Astro project, you'll see the following folders and files:
+## Project Structure
 
 ```text
 /
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
 ├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+├── src/
+├── astro.config.mjs
+├── package-lock.json
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Scripts
 
-## 🧞 Commands
+| Command | Purpose |
+| :-- | :-- |
+| `npm install` | Install dependencies |
+| `npm run dev` | Start local dev server at `http://localhost:4321` |
+| `npm run check` | Run Astro type/content checks |
+| `npm run build` | Build static output into `./dist/` |
+| `npm run preview` | Preview the production build locally |
+| `npm test` | Repository-wide validation (`astro check` + `astro build`) |
 
-All commands are run from the root of the project, from a terminal:
+## GitHub Pages Deployment
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+The repository includes [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which deploys the site to GitHub Pages on every push to `main` and also supports manual runs from the Actions tab.
 
-## 👀 Want to learn more?
+Current Pages target:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Site URL: `https://cuimingda.github.io`
+- Base path: `/mobius-network`
+- Final GitHub Pages URL: `https://cuimingda.github.io/mobius-network/`
+
+One-time GitHub setup:
+
+1. Go to the repository `Settings`.
+2. Open `Pages`.
+3. Set `Source` to `GitHub Actions`.
+
+## Custom Domain Later
+
+When you switch from the repository URL to a custom domain:
+
+1. Update `site` in `astro.config.mjs` to the final domain, for example `https://example.com`.
+2. Remove the `base` setting from `astro.config.mjs`.
+3. Add `public/CNAME` with the custom domain on a single line.
+4. Configure DNS at your domain provider to point to GitHub Pages.
