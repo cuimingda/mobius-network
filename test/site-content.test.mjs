@@ -26,3 +26,7 @@ test('homepage includes key company registration details', () => {
 		assert.ok(html.includes(text), `expected built homepage to include "${text}"`);
 	}
 });
+
+test('homepage includes footer copyright text', () => {
+	assert.ok(html.includes('© 2026 杭州墨笔悟斯网络科技有限公司'));
+});
