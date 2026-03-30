@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+const cname = await readFile(new URL('../dist/CNAME', import.meta.url), 'utf8');
 
 test('homepage includes official company names', () => {
 	assert.match(html, /杭州墨笔悟斯网络科技有限公司/);
@@ -42,4 +43,10 @@ test('homepage highlights supported delivery formats', () => {
 	for (const text of deliveryFormats) {
 		assert.ok(html.includes(text), `expected built homepage to include "${text}"`);
 	}
+});
+
+test('production build preserves the GitHub Pages custom domain', () => {
+	assert.equal(cname.trim(), 'mobius-network.com');
+	assert.doesNotMatch(html, /mingda\.dev/);
+	assert.doesNotMatch(html, /\/mobius-network\//);
 });

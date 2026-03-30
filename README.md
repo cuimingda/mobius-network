@@ -39,9 +39,9 @@ The repository includes [`.github/workflows/deploy.yml`](.github/workflows/deplo
 Current Pages target:
 
 - Local development URL: `http://localhost:4321/`
-- Production site URL: `https://mingda.dev`
-- Base path: `/mobius-network`
-- Final public URL: `https://mingda.dev/mobius-network/`
+- Production site URL: `https://mobius-network.com`
+- Base path: `/`
+- Final public URL: `https://mobius-network.com/`
 
 One-time GitHub setup:
 
@@ -49,4 +49,4 @@ One-time GitHub setup:
 2. Open `Pages`.
 3. Set `Source` to `GitHub Actions`.
 
-The Astro config uses `/` during `npm run dev`, and uses `/mobius-network` for production builds so local development stays on the root path while GitHub Pages output stays under the repository path.
+The Astro config uses the custom domain `https://mobius-network.com` and the root base path `/` for both local development and production builds. The repository also includes `public/CNAME` so the published GitHub Pages artifact preserves the custom domain configuration.
